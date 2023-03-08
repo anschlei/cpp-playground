@@ -12,7 +12,7 @@
 #include "DoublyLinkedList.h"
 
 //----------------------------------------------------------------------------------
-//									*TestClasses*
+//				*TestClasses*
 //----------------------------------------------------------------------------------
 
 namespace
@@ -20,15 +20,14 @@ namespace
 	class CTestClass
 	{
 	public:
-		CTestClass()  = default;
-		~CTestClass() = default;
-
-		int m_Value = 0;
+		CTestClass()  	= default;
+		~CTestClass() 	= default;
+		int m_Value 	= 0;
 	};
 }
 
 //----------------------------------------------------------------------------------
-//							*List::CDoublyLinkedList TestCases*
+//			*List::CDoublyLinkedList TestCases*
 //----------------------------------------------------------------------------------
 namespace ListTest
 {
