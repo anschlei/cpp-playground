@@ -50,18 +50,20 @@ namespace List
 		~CDoublyLinkedList	();
 
 	public:
-		void PushBack	(XPtr _pNewData);
-		void PushFront	(XPtr _pNewData);
+		void PushBack	(const XPtr _pNewData);
+		void PushFront	(const XPtr _pNewData);
 
-		bool InsertAtIndex	(size_t _Index, XPtr _pNewData);
-		XPtr At			(size_t _Index);
-		bool RemoveAt		(size_t _Index);
-		size_t Size();
+		bool InsertAtIndex	(const size_t _Index, const XPtr _pNewData);
+		XPtr At			(const size_t _Index) const;
+		bool RemoveAt		(const size_t _Index);
+		size_t Size() const;
 
 		XPtr PopBack  ();
 		XPtr PopFront ();
 
-		XPtr operator[](size_t _Index);
+		void Clear();
+
+		XPtr operator[](const size_t _Index) const;
 
 	private:
 		NodePtr m_pStartNode;
@@ -120,7 +122,7 @@ namespace List
 	* @property XPtr _pNewDta: a pointer from the storage object T
 	*/
 	template <typename T>
-	void CDoublyLinkedList<T>::PushBack(XPtr _pNewData)
+	void CDoublyLinkedList<T>::PushBack(const XPtr _pNewData)
 	{
 		NodePtr pNewNode  = new Node;
 
@@ -157,7 +159,7 @@ namespace List
 	* @property XPtr _pNewDta: a pointer from the storage object T
 	*/
 	template<typename T>
-	void CDoublyLinkedList<T>::PushFront(XPtr _pNewData)
+	void CDoublyLinkedList<T>::PushFront(const XPtr _pNewData)
 	{
 		NodePtr pNewNode  = new Node;
 
@@ -198,7 +200,7 @@ namespace List
 	* @return bool			: if insert at index in range of the list size
 	*/
 	template<typename T>
-	bool CDoublyLinkedList<T>::InsertAtIndex(size_t _Index, XPtr _pNewData)
+	bool CDoublyLinkedList<T>::InsertAtIndex(const size_t _Index, const XPtr _pNewData)
 	{
 		NodePtr pSearchNode 	= m_pStartNode;
 		NodePtr pNewNode	= new Node;
@@ -271,7 +273,7 @@ namespace List
 	* @return T* SNode->m_pData 	: holds a pointer to the storage object
 	*/
 	template<typename T>
-	T* CDoublyLinkedList<T>::At(size_t _Index)
+	T* CDoublyLinkedList<T>::At(const size_t _Index) const
 	{
 		if (_Index > m_Size) return nullptr;
 
@@ -292,7 +294,7 @@ namespace List
 	* @return bool			: if the element exist and was deleted returns true
 	*/
 	template<typename T>
-	bool CDoublyLinkedList<T>::RemoveAt(size_t _Index)
+	bool CDoublyLinkedList<T>::RemoveAt(const size_t _Index)
 	{
 		NodePtr pRemoveNode = m_pStartNode;
 
@@ -333,7 +335,7 @@ namespace List
 	}
 
 	template<typename T>
-	size_t CDoublyLinkedList<T>::Size()
+	size_t CDoublyLinkedList<T>::Size() const
 	{
 		return m_Size;
 	}
@@ -426,9 +428,36 @@ namespace List
 	* @return T* SNode->m_pData 	: holds a pointer to the storage object
 	*/
 	template<typename T>
-	T* CDoublyLinkedList<T>::operator[](size_t _Index)
+	T* CDoublyLinkedList<T>::operator[](const size_t _Index) const
 	{
 		return CDoublyLinkedList::At(_Index);
+	}
+
+	/**
+	* Delete all SNodes elements in the list.
+	*/
+	template<typename T>
+	void CDoublyLinkedList<T>::Clear()
+	{
+		while (m_Size > 0)
+		{
+			if (m_Size > 1)
+			{
+				m_pEndNode = m_pEndNode->m_pPre;
+
+				delete m_pEndNode->m_pSuc;
+			}
+			else
+			{
+				delete m_pEndNode;
+
+				m_pStartNode = nullptr;
+
+				m_pEndNode = nullptr;
+			}
+
+			--m_Size;
+		}
 	}
 
 }//namespace List

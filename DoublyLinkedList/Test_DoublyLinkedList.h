@@ -264,4 +264,30 @@ namespace ListTest
 		assert(TestInstance.At(4)->m_Value == TestClass4.m_Value);
 	}
 
+	void Test_Clear()
+	{
+		List::CDoublyLinkedList<CTestClass> TestInstance;
+
+		CTestClass TestClass1;
+		CTestClass TestClass2;
+		CTestClass TestClass3;
+		CTestClass TestClass4;
+		CTestClass TestClass5;
+
+		TestClass1.m_Value = 10;
+		TestClass2.m_Value = 15;
+		TestClass3.m_Value = 20;
+		TestClass4.m_Value = 25;
+		TestClass5.m_Value = 30;
+
+		TestInstance.PushBack(&TestClass1);
+		TestInstance.PushBack(&TestClass2);
+		TestInstance.PushBack(&TestClass3);
+		TestInstance.PushBack(&TestClass4);
+		TestInstance.PushBack(&TestClass5);
+
+		assert(TestInstance.Size() == 5);
+		TestInstance.Clear();
+		assert(TestInstance.Size() == 0);
+	}
 }// namespace ListTest

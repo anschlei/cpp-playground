@@ -15,6 +15,7 @@ int main()
 	ListTest::Test_PopFront();
 	ListTest::Test_RemoveAt();
 	ListTest::Test_InsertAtIndex();
+	ListTest::Test_Clear();
 
 	return 0;
 }
