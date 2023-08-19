@@ -7,3 +7,5 @@ The following Examples was implemented.
 ### Examples
 
 - DoublyLinkedList as Template
+- StringSwitch
+

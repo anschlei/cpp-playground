@@ -1,0 +1,3 @@
+[submodule "StringSwitch"]
+	path = StringSwitch
+	url = https://github.com/anschlei/StringSwitch.git
